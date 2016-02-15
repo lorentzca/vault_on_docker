@@ -1,4 +1,4 @@
-# vault on docker
+# Vault on Docker
 
 ## Run container
 
