@@ -1,5 +1,7 @@
 # Vault on Docker
 
+⚠ No data is held in this setting
+
 ## Run container
 
 ex)
@@ -119,3 +121,7 @@ $ curl -s -X GET -H "X-Vault-Token:$VAULT_TOKEN" http://192.168.99.100:8200/v1/s
   "auth": null
 }
 ```
+
+## TODO
+
+- [ ] to use the [Docker Data Volume](https://docs.docker.com/engine/userguide/containers/dockervolumes/)
