@@ -33,7 +33,8 @@ $ curl -s -X PUT -d '{ "secret_shares": 3, "secret_threshold": 3 }' http://192.1
 ex)
 
 ```
-$ export VAULT_TOKEN=8a062d3a-a98b-1bbd-160f-ddd5fcc83599
+$ export VAULT_TOKEN="8a062d3a-a98b-1bbd-160f-ddd5fcc83599"
+$ export VAULT_ADDR="http://192.168.99.100:8200/"
 ```
 
 ## Unseal vault
@@ -41,7 +42,7 @@ $ export VAULT_TOKEN=8a062d3a-a98b-1bbd-160f-ddd5fcc83599
 ex)
 
 ```
-$ curl -s -X PUT -d '{ "key": "85aa2679b48cb226d8ca421ce5efab237a9a6fe5696a14f40e8a189104a97a1903" }' http://192.168.99.100:8200/v1/sys/unseal | jq .
+$ curl -s -X PUT -d '{ "key": "85aa2679b48cb226d8ca421ce5efab237a9a6fe5696a14f40e8a189104a97a1903" }' "$VAULT_ADDR"v1/sys/unseal | jq .
 {
   "sealed": true,
   "t": 3,
@@ -49,7 +50,7 @@ $ curl -s -X PUT -d '{ "key": "85aa2679b48cb226d8ca421ce5efab237a9a6fe5696a14f40
   "progress": 1
 }
 
-$ curl -s -X PUT -d '{ "key": "207227df2acb87c35f81992793d0bcc8c74d9a3955d9cf981227148bfadf37b301" }' http://192.168.99.100:8200/v1/sys/unseal | jq .
+$ curl -s -X PUT -d '{ "key": "207227df2acb87c35f81992793d0bcc8c74d9a3955d9cf981227148bfadf37b301" }' "$VAULT_ADDR"v1/sys/unseal | jq .
 {
   "sealed": true,
   "t": 3,
@@ -57,7 +58,7 @@ $ curl -s -X PUT -d '{ "key": "207227df2acb87c35f81992793d0bcc8c74d9a3955d9cf981
   "progress": 2
 }
 
-$ curl -s -X PUT -d '{ "key": "aa732f49abad59277bb0fbab255fe91f43ead8dfcf868b91cc0f31b93f31aea402" }' http://192.168.99.100:8200/v1/sys/unseal | jq .
+$ curl -s -X PUT -d '{ "key": "aa732f49abad59277bb0fbab255fe91f43ead8dfcf868b91cc0f31b93f31aea402" }' "$VAULT_ADDR"v1/sys/unseal | jq .
 {
   "sealed": false,
   "t": 3,
@@ -73,7 +74,7 @@ ex)
 check mounts
 
 ```
-$ curl -s -X GET -H "X-Vault-Token:$VAULT_TOKEN" http://192.168.99.100:8200/v1/sys/mounts | jq .
+$ curl -s -X GET -H "X-Vault-Token:$VAULT_TOKEN" "$VAULT_ADDR"v1/sys/mounts | jq .
 {
   "cubbyhole/": {
     "config": {
@@ -105,13 +106,13 @@ $ curl -s -X GET -H "X-Vault-Token:$VAULT_TOKEN" http://192.168.99.100:8200/v1/s
 put variavle
 
 ```
-$ curl -s -X POST -H "X-Vault-Token:$VAULT_TOKEN" -H "Content-Type: application/json" -d '{ "value": "test value" }' http://192.168.99.100:8200/v1/secret/test_key | jq .
+$ curl -s -X POST -H "X-Vault-Token:$VAULT_TOKEN" -H "Content-Type: application/json" -d '{ "value": "test value" }' "$VAULT_ADDR"v1/secret/test_key | jq .
 ```
 
 get variable
 
 ```
-$ curl -s -X GET -H "X-Vault-Token:$VAULT_TOKEN" http://192.168.99.100:8200/v1/secret/test_key | jq .
+$ curl -s -X GET -H "X-Vault-Token:$VAULT_TOKEN" "$VAULT_ADDR"v1/secret/test_key | jq .
 {
   "lease_id": "",
   "renewable": false,
