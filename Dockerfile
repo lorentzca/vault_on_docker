@@ -1,7 +1,11 @@
-FROM centos:7
+FROM alpine
+
+RUN apk --update add --virtual build-dependencies \
+  curl \
+  wget \
+  unzip
 
 RUN \
-  yum install -y wget unzip && \
   cd /usr/local/bin && \
   wget https://releases.hashicorp.com/vault/0.4.1/vault_0.4.1_linux_amd64.zip && \
   unzip vault_0.4.1_linux_amd64.zip && \
