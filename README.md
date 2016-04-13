@@ -9,7 +9,7 @@ https://hub.docker.com/r/lorentzca/vault_on_docker/
 ex)
 
 ```
-$ docker run -t -p 8200:8200 -i --rm lorentzca/vault_on_centos7
+$ docker run -t -p 8200:8200 -i --rm lorentzca/vault_on_docker
 ```
 
 ## Init
