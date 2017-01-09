@@ -1,6 +1,6 @@
 FROM alpine
 
-ARG version="0.6.0"
+ARG version="0.6.4"
 
 RUN apk --update add --virtual build-dependencies \
   curl \
